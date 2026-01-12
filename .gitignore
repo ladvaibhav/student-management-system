@@ -3,3 +3,4 @@
 *.iml
 .env
 *.log
+application-secret.properties

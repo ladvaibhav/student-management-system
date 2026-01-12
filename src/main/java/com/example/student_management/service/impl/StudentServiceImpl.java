@@ -1,8 +1,9 @@
 package com.example.student_management.service.impl;
 
 import com.example.student_management.dto.request.StudentRequestDTO;
+import com.example.student_management.dto.response.PageResponseDTO;
 import com.example.student_management.dto.response.StudentResponseDTO;
-import com.example.student_management.entity.Student;
+import com.example.student_management.entity.Students;
 import com.example.student_management.exception.ResourceNotFoundException;
 import com.example.student_management.mapper.StudentMapper;
 import com.example.student_management.repository.StudentRepository;
@@ -27,7 +28,7 @@ public class StudentServiceImpl implements StudentService {
    // Create
     @Override
     public StudentResponseDTO saveStudent(StudentRequestDTO dto){
-        Student student = StudentMapper.toEntity(dto);
+        Students student = StudentMapper.toEntity(dto);
         return StudentMapper.toResponse(repository.save(student));
     }
 
@@ -41,27 +42,39 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Page<StudentResponseDTO> getAllStudentPage(int page, int size, String sortBy, String direction) {
+    public PageResponseDTO<StudentResponseDTO> getAllStudentPage(int page, int size, String sortBy, String direction) {
 
         Sort sort = direction.equalsIgnoreCase("desc")
                 ? Sort.by(sortBy).descending()
                 : Sort.by(sortBy).ascending();
 
         PageRequest pageable = PageRequest.of(page, size, sort);
+        Page<Students> studentPage = repository.findAll(pageable);
 
-        return repository.findAll(pageable)
-                .map(StudentMapper::toResponse);
+        List<StudentResponseDTO> content = studentPage.getContent()
+                .stream()
+                .map(StudentMapper::toResponse)
+                .toList();
+
+        return  new PageResponseDTO<>(
+                content,
+                studentPage.getNumber(),
+                studentPage.getSize(),
+                studentPage.getTotalElements(),
+                studentPage.getTotalPages(),
+                studentPage.isLast()
+        );
     }
 
     @Override
     public StudentResponseDTO getStudentById(Long id) {
-        Student student = findByIdOrThrow(id);
+        Students student = findByIdOrThrow(id);
         return StudentMapper.toResponse(student);
     }
 
     @Override
     public StudentResponseDTO getStudentByEmail(String email) {
-       Student student = repository.findByEmail(email)
+       Students student = repository.findByEmail(email)
                 .orElseThrow(()->
                         new ResourceNotFoundException("Student not found or it does not exist with email: "+email));
                return StudentMapper.toResponse(student);
@@ -78,7 +91,7 @@ public class StudentServiceImpl implements StudentService {
     // UPDATE
     @Override
     public StudentResponseDTO updateById(Long id, StudentRequestDTO dto){
-        Student student = findByIdOrThrow(id);
+        Students student = findByIdOrThrow(id);
         StudentMapper.updateEntity(student, dto);
         return StudentMapper.toResponse(repository.save(student));
     }
@@ -91,14 +104,14 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void deleteByEmail(String email){
-        Student student = repository.findByEmail(email)
+        Students student = repository.findByEmail(email)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Student not found with email:"+email));
         repository.delete(student);
     }
 
     // Helper
-    private Student findByIdOrThrow(Long id){
+    private Students findByIdOrThrow(Long id){
         return repository.findById(id)
                 .orElseThrow(() ->
                         new ResourceNotFoundException("Student not found with id: "+id));

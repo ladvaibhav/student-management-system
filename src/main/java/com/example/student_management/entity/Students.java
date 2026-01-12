@@ -1,13 +1,11 @@
 package com.example.student_management.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 
 
 @Entity
 @Table(name = "students")
-public class Student {
+public class Students {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +20,10 @@ public class Student {
     private String course;
 
     // No argument Constructor required by JPA
-    public Student() {
+    public Students() {
     }
 
-    public Student(String name, String email, String course) {
+    public Students(String name, String email, String course) {
         this.name = name;
         this.email = email;
         this.course = course;

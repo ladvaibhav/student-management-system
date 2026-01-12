@@ -1,6 +1,7 @@
 package com.example.student_management.service;
 
 import com.example.student_management.dto.request.StudentRequestDTO;
+import com.example.student_management.dto.response.PageResponseDTO;
 import com.example.student_management.dto.response.StudentResponseDTO;
 import org.springframework.data.domain.Page;
 
@@ -12,7 +13,7 @@ public interface StudentService {
 
     List<StudentResponseDTO> getAllStudents();
 
-    Page<StudentResponseDTO> getAllStudentPage(int page, int size, String sortBy, String direction);
+    PageResponseDTO<StudentResponseDTO> getAllStudentPage(int page, int size, String sortBy, String direction);
 
     StudentResponseDTO getStudentById(Long id);
 

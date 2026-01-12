@@ -10,6 +10,7 @@ A Spring Boot REST API for managing student records.
 - Exception handling
 - Layered architecture ( Entity, DTO, Service,ServiceImp, Repository, Controller)
 - Pagination an Sorting ( Offset Pagination )
+- Swagger UI for API documentation
 
 ## 🛠 Tech Stack
 - Java 21+
@@ -18,13 +19,13 @@ A Spring Boot REST API for managing student records.
 - Hibernate
 - PostgresSQL
 - Maven
-- Swagger (Sringdoc OpenAPI)
+- Swagger (Springdoc OpenAPI)
 
 ## API Documentation (Swagger UI)
 This project integrates Swagger UI to provide interactive and auto-generated API documentation.
 ###🔗 Swagger UI URL
 - After starting the application, open:
- [http://localhost:8080/swagger-ui/index.html] 
+ http://localhost:8080/swagger-ui/index.html
 
 You can:
 - View all available REST APIs
