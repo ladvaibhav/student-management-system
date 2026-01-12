@@ -23,7 +23,8 @@ A Spring Boot REST API for managing student records.
 
 ## API Documentation (Swagger UI)
 This project integrates Swagger UI to provide interactive and auto-generated API documentation.
-###🔗 Swagger UI URL
+
+### 🔗 Swagger UI URL
 - After starting the application, open:
  http://localhost:8080/swagger-ui/index.html
 
@@ -37,16 +38,16 @@ You can:
 
 <table>
   <tr>
-    <td><img src="docs/images/img_1.png" width="300"/></td>
-    <td><img src="docs/images/img.png" width="300"/></td>
+    <td><img src="docs/images/img_1.png" width="800"/></td>
+    <td><img src="docs/images/img.png" width="800"/></td>
   </tr>
   <tr>
-    <td><img src="docs/images/img_2.png" width="300"/></td>
-    <td><img src="docs/images/img_3.png" width="300"/></td>
+    <td><img src="docs/images/img_2.png" width="800"/></td>
+    <td><img src="docs/images/img_3.png" width="800"/></td>
   </tr>
   <tr>
-    <td><img src="docs/images/img_4.png" width="300"/></td>
-    <td><img src="docs/images/img_5.png" width="300"/></td>
+    <td><img src="docs/images/img_4.png" width="800"/></td>
+    <td><img src="docs/images/img_5.png" width="800"/></td>
   </tr>
 </table>
 
