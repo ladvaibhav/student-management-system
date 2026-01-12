@@ -10,7 +10,6 @@ A Spring Boot REST API for managing student records.
 - Exception handling
 - Layered architecture ( Entity, DTO, Service,ServiceImp, Repository, Controller)
 - Pagination an Sorting ( Offset Pagination )
-- Swagger UI for API documentation
 
 ## 🛠 Tech Stack
 - Java 21+
