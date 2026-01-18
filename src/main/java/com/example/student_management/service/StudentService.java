@@ -3,7 +3,6 @@ package com.example.student_management.service;
 import com.example.student_management.dto.request.StudentRequestDTO;
 import com.example.student_management.dto.response.PageResponseDTO;
 import com.example.student_management.dto.response.StudentResponseDTO;
-import org.springframework.data.domain.Page;
 
 import java.util.List;
 

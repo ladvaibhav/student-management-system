@@ -11,6 +11,7 @@ A Spring Boot REST API for managing student records.
 - Layered architecture ( Entity, DTO, Service,ServiceImp, Repository, Controller)
 - Pagination an Sorting ( Offset Pagination )
 - Swagger UI for API documentation
+- Authentication
 
 ## 🛠 Tech Stack
 - Java 21+
@@ -84,6 +85,33 @@ You can:
 | GET | /v1/students/paged?page=0&size=4&sortBy=name&direction=desc |
 | GET | /v1/students/paged?page=0&size=4&sort=name,asc              |
 
+## 🔐 Authentication
+
+This project uses **Spring Security** to secure REST APIs.
+
+### Authentication Features
+- Database-backed authentication
+- Custom `UserDetailsService` implementation
+- Password encryption using `BCryptPasswordEncoder`
+- HTTP Basic Authentication
+
+### Secured Endpoints
+| Method         | Endpoint          | Access                     |
+|----------------|-------------------|----------------------------|
+| ALL            | `/v1/students/**` | Authenticated              |
+| POST           | `/v1/users/`      | Public (User Registration) |
+| GET/PUT/DELETE | `/v1/users/`      | Authenticated              |
+
+## 📦 User Endpoints
+
+| Method | Endpoint | Description |
+|------|---------|------------|
+| POST | `/v1/users` | Create new user |
+| GET | `/v1/users/all` | Get all users |
+| GET | `/v1/users/id/{id}` | Get user by ID |
+| GET | `/v1/users/name/{username}` | Get user by username |
+| PUT | `/v1/users/id/{id}` | Update user |
+| DELETE | `/v1/users/id/{id}` | Delete user |
 
 ## 🧪 Status
 🚧 **Work in Progress**
