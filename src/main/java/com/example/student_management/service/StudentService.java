@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface StudentService {
 
-    StudentResponseDTO saveStudent(StudentRequestDTO student);
+    StudentResponseDTO saveStudent(StudentRequestDTO dto);
 
     List<StudentResponseDTO> getAllStudents();
 

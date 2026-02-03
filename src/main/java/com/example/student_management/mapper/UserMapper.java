@@ -10,14 +10,14 @@ public class UserMapper {
     // Create
     public static Users toEntity(UserRequestDTO dto) {
         Users user = new Users();
-        user.setUsername(dto.getUsername().toLowerCase());
+        user.setUsername(dto.getUsername());
         user.setPassword(dto.getPassword());
         return user;
     }
 
     // Update
     public static void updateEntity(Users user, UserRequestDTO dto){
-        user.setUsername(dto.getUsername().toLowerCase());
+        user.setUsername(dto.getUsername());
         user.setPassword(dto.getPassword());
     }
 

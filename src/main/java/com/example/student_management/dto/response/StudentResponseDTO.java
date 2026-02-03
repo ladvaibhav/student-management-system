@@ -1,17 +1,22 @@
 package com.example.student_management.dto.response;
 
+import java.time.LocalDate;
+
 public class StudentResponseDTO {
 
     private Long id;
     private String name;
     private String email;
-    private String course;
+    private String phone;
+    private LocalDate dob;
 
-    public StudentResponseDTO(Long id, String name, String email, String course) {
+
+    public StudentResponseDTO(Long id, String name, String email, String phone, LocalDate dob ) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.course = course;
+        this.phone = phone;
+        this.dob = dob;
     }
 
     public Long getId() {
@@ -26,7 +31,12 @@ public class StudentResponseDTO {
         return email;
     }
 
-    public String getCourse() {
-        return course;
+    public String getPhone() {
+        return phone;
     }
+
+    public LocalDate getDob() {
+        return dob;
+    }
+
 }

@@ -2,6 +2,10 @@ package com.example.student_management.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+
+import java.time.LocalDate;
 
 public class StudentRequestDTO {
 
@@ -12,11 +16,14 @@ public class StudentRequestDTO {
     @NotBlank(message = "Email is Required")
     private String email;
 
-    private String course;
+    @NotNull(message = "Phone number is required")
+    private String phone;
 
-    public String getName() {
-        return name;
-    }
+    @NotNull(message = "Date of Birth is required")
+    @Past(message = "Date of birth must be in the past")
+    private LocalDate dob;
+
+    public String getName() { return name; }
 
     public void setName(String name) {
         this.name = name;
@@ -30,11 +37,11 @@ public class StudentRequestDTO {
         this.email = email;
     }
 
-    public String getCourse() {
-        return course;
-    }
+    public String getPhone() { return phone; }
 
-    public void setCourse(String course) {
-        this.course = course;
-    }
+    public void setPhone(String phone){ this.phone=phone; }
+
+    public LocalDate getDob() { return dob; }
+
+    public void setDob(LocalDate dob){ this.dob=dob; }
 }

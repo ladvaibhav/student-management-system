@@ -6,29 +6,47 @@ import com.example.student_management.entity.Students;
 
 public class StudentMapper {
 
+    private StudentMapper(){
+    }
+
     // Create
     public static Students toEntity(StudentRequestDTO dto) {
+        if(dto==null){
+            return null;
+        }
         Students student = new Students();
-        student.setName(dto.getName());
-        student.setEmail(dto.getEmail());
-        student.setCourse(dto.getCourse());
+        mapRequestToEntity(student,dto);
         return student;
     }
 
     // Update
     public static void updateEntity(Students student, StudentRequestDTO dto){
-        student.setName(dto.getName());
-        student.setEmail(dto.getEmail());
-        student.setCourse(dto.getCourse());
+        if(student==null || dto==null){
+            return;
+        }
+        mapRequestToEntity(student, dto);
     }
 
     // READ
     public static StudentResponseDTO toResponse(Students student) {
+        if(student==null){
+            return null;
+        }
         return new StudentResponseDTO(
                 student.getId(),
                 student.getName(),
                 student.getEmail(),
-                student.getCourse()
+                student.getPhone(),
+                student.getDob()
         );
     }
+
+    // Helper
+    private static void mapRequestToEntity(Students student,StudentRequestDTO dto){
+        student.setName(dto.getName());
+        student.setEmail(dto.getEmail());
+        student.setPhone(dto.getPhone());
+        student.setDob(dto.getDob());
+    }
+
 }
