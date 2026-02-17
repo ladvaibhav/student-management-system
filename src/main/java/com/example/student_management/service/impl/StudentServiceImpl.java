@@ -32,7 +32,7 @@ public class StudentServiceImpl implements StudentService {
         return StudentMapper.toResponse(repository.save(student));
     }
 
-    // READ
+    // Read
     @Override
     public List<StudentResponseDTO> getAllStudents() {
         return repository.findAll()

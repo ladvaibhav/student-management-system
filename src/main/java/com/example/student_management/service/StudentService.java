@@ -20,7 +20,7 @@ public interface StudentService {
 
     List<StudentResponseDTO> getStudentByName(String name);
 
-    StudentResponseDTO updateById(Long id, StudentRequestDTO updatedStudent);
+    StudentResponseDTO updateById(Long id, StudentRequestDTO dto);
 
     void deleteById(Long id);
 

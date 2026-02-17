@@ -27,7 +27,7 @@ public class StudentMapper {
         mapRequestToEntity(student, dto);
     }
 
-    // READ
+    // Read
     public static StudentResponseDTO toResponse(Students student) {
         if(student==null){
             return null;

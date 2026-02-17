@@ -1,9 +1,7 @@
 package com.example.student_management.dto.request;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
@@ -17,10 +15,15 @@ public class StudentRequestDTO {
     private String email;
 
     @NotNull(message = "Phone number is required")
+    @Pattern(
+            regexp = "^[0-9]{10}$",
+            message = "phone number must be 10 digits"
+    )
     private String phone;
 
     @NotNull(message = "Date of Birth is required")
     @Past(message = "Date of birth must be in the past")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dob;
 
     public String getName() { return name; }

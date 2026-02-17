@@ -1,7 +1,6 @@
 package com.example.student_management.exception;
 
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -44,36 +43,27 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, Object>> handleInternal(Exception ex){
-
-        Map<String, Object> error = new LinkedHashMap<>();
-        error.put("timestamp", LocalDateTime.now());
-        error.put("status", 500);
-        error.put("error", "Internal Server Error");
-        error.put("message", "Something went wrong");
-
-        return new ResponseEntity<>(error,HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<Map<String, Object>> handleTypeMismatch(MethodArgumentTypeMismatchException ex){
 
         Map<String, Object> error = new LinkedHashMap<>();
         error.put("timestamp", LocalDateTime.now());
-        error.put("status", 400);
+        error.put("status",400);
         error.put("error", "Bad Request");
-        error.put("message", "Invalid Student id. ID must be a number");
+        error.put("message", ex.getMessage());
 
-        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);
     }
+
+
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String,Object>> handleValidationErrors(MethodArgumentNotValidException ex){
 
         Map<String, Object> response = new LinkedHashMap<>();
+        response.put("timestamp", LocalDateTime.now());
         response.put("status",400);
-        response.put("error", "Bad Request or Invalid input");
+        response.put("error", "Bad Request");
 
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getFieldErrors()
@@ -82,6 +72,19 @@ public class GlobalExceptionHandler {
         response.put("message", errors);
 
         return ResponseEntity.badRequest().body(response);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, Object>> handleInternal(Exception ex) {
+
+        ex.printStackTrace();
+
+        Map<String, Object> error = new LinkedHashMap<>();
+        error.put("timestamp", LocalDateTime.now());
+        error.put("status", 500);
+        error.put("error", ex.getMessage());
+
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

@@ -27,10 +27,6 @@ public class Departments{
         return deptId;
     }
 
-    public void setDeptId(Long deptId){
-        this.deptId=deptId;
-    }
-
     public String getDeptName(){
         return deptName;
     }
